@@ -1,6 +1,7 @@
 package Game;
 
 import People.Person;
+import Rooms.ReqRoom;
 import Rooms.Room;
 import Rooms.WinningRoom;
 	
@@ -23,17 +24,22 @@ public class Runner {
 				building[x][y] = new Room(x,y);
 			}
 		}
-
+		//Setup player 1 and the input scanner
+		Person player1 = new Person("FirstName", "FamilyName", "Hufflepuff", 0,0);
+		building[0][0].enterRoom(player1);
+		Scanner in = new Scanner(System.in);
 
 		//Create a random winning room.
 		int x = (int)(Math.random()*building.length);
 		int y = (int)(Math.random()*building.length);
 		building[x][y] = new WinningRoom(x, y);
+
+		//create a random req room
+		int a = (int)(Math.random()*building.length);
+		int b = (int)(Math.random()*building.length);
+		building[a][b] = new ReqRoom(a, b);
 		 
-		 //Setup player 1 and the input scanner
-		Person player1 = new Person("FirstName", "FamilyName", 0,0);
-		building[0][0].enterRoom(player1);
-		Scanner in = new Scanner(System.in);
+
 		while(gameOn)
 		{
 			System.out.println("Where would you like to move? (Choose N, S, E, W)");
